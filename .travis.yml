@@ -23,6 +23,10 @@ branches:
 notifications:
   email: true
 
+addons:
+  hosts:
+    - travis.dev
+
 os:
   - linux
   - osx
