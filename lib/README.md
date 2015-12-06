@@ -1,0 +1,1 @@
+This folder includes the source and the headers of the cryptoengine-lib.

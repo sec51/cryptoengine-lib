@@ -1,0 +1,3 @@
+- Rotate the salt for the nonce generation
+- Implement signatures
+- Make tests more extensive
