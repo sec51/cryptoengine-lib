@@ -269,7 +269,7 @@ EncryptedMessage CryptoEngine::Encrypt(const Message &message) {
         std::string cipher_text = crypto_secretbox(full_clear_text, nonce, secret_key_);
 
         // return the Message object so that it can be serialized to bytes
-        return EncryptedMessage::EncryptedMessage(nonce, cipher_text);
+        return EncryptedMessage(nonce, cipher_text);
     } catch (std::exception& e) {
         std::cout << "CryptoEngine::Encrypt exception: " << e.what() << std::endl;
         throw g_crypto_engine_encryption_failure;
@@ -343,7 +343,7 @@ EncryptedMessage CryptoEngine::EncryptWithPublicKey(const Message &message, cons
         // encrypt with the recipient public key
         std::string cipher_text = crypto_box(full_clear_text, nonce, ver_engine.public_key(), private_key_);
 
-        return EncryptedMessage::EncryptedMessage(nonce, cipher_text);
+        return EncryptedMessage(nonce, cipher_text);
     } catch (std::exception& e) {
         std::cout << "CryptoEngine::Encrypt exception: " << e.what() << std::endl;
         throw g_crypto_engine_encryption_failure;
@@ -434,7 +434,7 @@ EncryptedMessage CryptoEngine::EncryptWithPublicKeyAndSign(const Message &messag
     // encrypt with the recipient public key
     std::string cipher_text = crypto_box(signed_message_string, nonce, ver_engine.public_key(), private_key_);
 
-    return EncryptedMessage::EncryptedMessage(nonce, cipher_text);
+    return EncryptedMessage(nonce, cipher_text);
 }
 
 EncryptedMessage CryptoEngine::EncryptWithPublicKeyAndSign(const std::string &clear_text, const VerificationEngine &ver_engine) {
