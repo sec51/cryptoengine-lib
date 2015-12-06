@@ -1,0 +1,23 @@
+language: cpp
+
+compiler:
+  - clang
+
+before_install:
+  - echo $LANG
+  - echo $LC_ALL
+  - if [ $TRAVIS_OS_NAME == linux ]; then setup-travis.sh; fi
+  - if [ $TRAVIS_OS_NAME == osx ]; thensetup-travis.sh; fi
+
+script: sh getdeps.sh && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && ./tests/CryptoEngineTest && make install
+
+branches:
+  only:
+    - master
+
+notifications:
+  email: true
+
+os:
+  - linux
+  - osx
