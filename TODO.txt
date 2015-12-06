@@ -1,3 +1,2 @@
-- Rotate the salt for the nonce generation
-- Implement signatures
-- Make tests more extensive
+- Rotate the salt and the hkdf key after the uint64_t max value is reached.
+- Implement ephemeral keys
