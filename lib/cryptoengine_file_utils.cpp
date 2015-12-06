@@ -230,5 +230,7 @@ std::string FileUtils::BuildKeyName(KeyType key_type) {
         case kSalt:
             string_stream << SALT_KEY_NAME;
             return string_stream.str();
+        default:
+            return string_stream.str();
     }
 }
