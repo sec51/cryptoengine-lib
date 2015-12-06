@@ -14,7 +14,7 @@ before_install:
   - if [ $TRAVIS_OS_NAME == linux ]; then sh setup-travis.sh; fi
   - if [ $TRAVIS_OS_NAME == osx ]; then sh setup-travis.sh; fi
 
-script: sh getdeps.sh && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && ./tests/CryptoEngineTest && make install
+script: travis_wait sh getdeps.sh && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && ./tests/CryptoEngineTest && make install
 
 branches:
   only:
