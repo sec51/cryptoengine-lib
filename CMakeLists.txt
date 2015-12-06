@@ -16,8 +16,7 @@ site_name(HOSTNAME)
 
 
 # This is necessary to create  an archive with all the static libs this project use
-#set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-as-needed,-ldl")
-#set(CMAKE_SHARED_LINKER_FLAGS "-Wl,–whole-archive,-force_load,libnacl.a")
+set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 set(CMAKE_MACOSX_RPATH 1)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
@@ -113,30 +112,19 @@ if(LIBRESSL_ENABLED)
 endif()
 
 
-# LibNaCl
+# LibNaCl - set it to third party so we can cross compile.
 LOG("CPU Architecture: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
-site_name(HOSTNAME)
+set(LibNaCl_ROOT_DIR "${PROJECT_SOURCE_DIR}/third-party/nacl-20110221/build/${HOSTNAME}")
 find_package(LibNaCl)
 if(LIBNACL_FOUND)
-    LOG("LibNaCl FOUND in ${LibNaCl_LIBRARIES}")
-    LOG("LibNaCl Headers FOUND in ${LibNaCl_INCLUDE_DIR}")
-    include_directories(${LibNaCl_INCLUDE_DIR})
-    target_include_directories(CryptoEngine PUBLIC ${LibNaCl_INCLUDE_DIR})
-    target_link_libraries (CryptoEngine ${LibNaCl_LIBRARIES})
-else() # then look into the third-party folder
-    set(LibNaCl_ROOT_DIR "${PROJECT_SOURCE_DIR}/third-party/nacl-20110221/build/${HOSTNAME}")
     LOG("LibNaCl ROOT set to: ${LibNaCl_ROOT_DIR}")
-    find_package(LibNaCl REQUIRED)
-    if(LIBNACL_FOUND)
-        LOG("LibNaCl FOUND in ${LibNaCl_LIBRARIES}")
-        LOG("LibNaCl Headers FOUND in ${LibNaCl_INCLUDE_DIR}")
-        include_directories(${LibNaCl_INCLUDE_DIR})
-        target_include_directories(CryptoEngine BEFORE PUBLIC ${LibNaCl_INCLUDE_DIR})
-        target_link_libraries (CryptoEngine ${LibNaCl_LIBRARIES})
-    endif()
+    LOG("LibNaCl FOUND in ${LibNaCl_LIBRARY}")
+    LOG("LibNaCl Headers FOUND in ${LibNaCl_INCLUDE_DIR}")
+    LOG("LibNaCl Random FOUND in ${LibNaCl_RANDOM}")
+    include_directories(${LibNaCl_INCLUDE_DIR})
+    target_include_directories(CryptoEngine BEFORE PUBLIC ${LibNaCl_INCLUDE_DIR})
+    target_link_libraries (CryptoEngine ${LibNaCl_LIBRARY} ${LibNaCl_RANDOM} dl)
 endif()
-
-LOG("CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR}")
 
 add_subdirectory (lib)
 add_subdirectory (tests)

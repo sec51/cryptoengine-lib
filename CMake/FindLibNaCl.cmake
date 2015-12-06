@@ -17,38 +17,28 @@
 #  LIBNACL_INCLUDE_DIR       The LibNaCl include directories.
 #  LIBNACL_LIBRARY           The LibNaCl libraries.
 #  LIBNACL_LIBRARIES         The LibNaCl libraries.
+#  LIBNACL_RANDOM            The LibNaCl randombytes.o object file.
 
-if(${LibNaCl_ROOT_DIR})
-    MESSAGE("-- Lib NaCl ROOT not set, looking into the system dirs")
-    find_path(LibNaCl_ROOT_DIR
+
+find_path(LibNaCl_ROOT_DIR
         NAMES include/crypto_box.h include/crypto_secretbox.h lib/libnacl.a
         HINTS ${LibNaCl_ROOT_DIR}
         )
-else()
-    if(${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-        MESSAGE("-- Lib NaCl ROOT defined: ${LibNaCl_ROOT_DIR}")
-        find_path(LibNaCl_ROOT_DIR
-                NAMES include/amd64/crypto_box.h include/amd64/crypto_secretbox.h lib/amd64/libnacl.a
-                HINTS ${LibNaCl_ROOT_DIR}
-                )
-    else()
-        MESSAGE("Lib NaCl ROOT not defined, looking into x86 folder")
-        find_path(LibNaCl_ROOT_DIR
-                NAMES include/x86/crypto_box.h include/x86/crypto_secretbox.h lib/x86/libnacl.a
-                HINTS ${LibNaCl_ROOT_DIR}
-                )
-    endif()
-endif()
-
 
 find_path(LibNaCl_INCLUDE_DIR
         NAMES crypto_box.h crypto_secretbox.h
-        HINTS ${LibNaCl_ROOT_DIR}/include ${LibNaCl_ROOT_DIR}/include/amd64 ${LibNaCl_ROOT_DIR}/include/x86
-        PATHS ${LibNaCl_ROOT_DIR}/include ${LibNaCl_ROOT_DIR}/include/amd64 ${LibNaCl_ROOT_DIR}/include/x86
+        HINTS ${LibNaCl_ROOT_DIR}/include ${LibNaCl_ROOT_DIR}/include/nacl ${LibNaCl_ROOT_DIR}/include/amd64 ${LibNaCl_ROOT_DIR}/include/x86
+        PATHS ${LibNaCl_ROOT_DIR}/include ${LibNaCl_ROOT_DIR}/include/nacl ${LibNaCl_ROOT_DIR}/include/amd64 ${LibNaCl_ROOT_DIR}/include/x86
         )
 
 find_library(LibNaCl_LIBRARY
         NAMES libnacl.a
+        HINTS ${LibNaCl_ROOT_DIR}/lib ${LibNaCl_ROOT_DIR}/lib/amd64 ${LibNaCl_ROOT_DIR}/lib/x86
+        PATHS ${LibNaCl_ROOT_DIR}/lib ${LibNaCl_ROOT_DIR}/lib/amd64 ${LibNaCl_ROOT_DIR}/lib/x86
+        )
+
+find_file(LibNaCl_RANDOM
+        NAMES randombytes.o
         HINTS ${LibNaCl_ROOT_DIR}/lib ${LibNaCl_ROOT_DIR}/lib/amd64 ${LibNaCl_ROOT_DIR}/lib/x86
         PATHS ${LibNaCl_ROOT_DIR}/lib ${LibNaCl_ROOT_DIR}/lib/amd64 ${LibNaCl_ROOT_DIR}/lib/x86
         )

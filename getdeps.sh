@@ -71,7 +71,9 @@ echo "building NaCl...it may take a while..."
 ./do
 HOST=`hostname -s`
 HOSTNAME=`hostname`
-mv build/$HOST build/$HOSTNAME
+if [ "$HOST" -ne "$HOSTNAME" ]; then
+    mv build/$HOST build/$HOSTNAME
+fi
 cd ..
 echo "building NaCl: DONE"
 ### ------------------------------------------------------------
