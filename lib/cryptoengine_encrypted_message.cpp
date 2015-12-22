@@ -4,7 +4,7 @@
 
 #include "cryptoengine_encrypted_message.h"
 #include "cryptoengine.h"
-#include "conversions.h"
+#include "cryptoengine_conversions.h"
 #include <iostream>
 #include <cassert>
 

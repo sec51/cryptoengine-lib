@@ -5,7 +5,7 @@ add_library (CryptoEngineLib OBJECT
         cryptoengine_hkdf_utils.h cryptoengine_hkdf_utils.cpp
         cryptoengine_file_utils.h cryptoengine_file_utils.cpp
         base64.cpp base64.h
-        cryptoengine_message.cpp cryptoengine_message.h conversions.cpp conversions.h
+        cryptoengine_message.cpp cryptoengine_message.h cryptoengine_conversions.cpp cryptoengine_conversions.h
         cryptoengine_encrypted_message.h cryptoengine_encrypted_message.cpp verification_engine.cpp verification_engine.h
         )
 

@@ -143,5 +143,6 @@ install (FILES
         ${PROJECT_SOURCE_DIR}/lib/cryptoengine_message.h
         ${PROJECT_SOURCE_DIR}/lib/cryptoengine_file_utils.h
         ${PROJECT_SOURCE_DIR}/lib/cryptoengine_hkdf_utils.h
+        ${PROJECT_SOURCE_DIR}/lib/cryptoengine_conversions.h
         ${PROJECT_SOURCE_DIR}/lib/verification_engine.h
         DESTINATION include)

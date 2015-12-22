@@ -6,7 +6,7 @@ BUILD_DIR="build"
 THIRD_PARTY="third-party"
 
 # check if the build dir already exists
-# if it does notify the user but do not delete it. rm -rf it's dangerous !!!!
+# if it does notify the user but do not delete it. rm -rf is dangerous !!!!
 if [ -d "$BUILD_DIR" ]; then
   echo "The build dir is already present. REMOVE IT and re-run the script."
   exit 1
@@ -90,7 +90,7 @@ echo "Getting Google testing library: DONE"
 ### ------------------------------------------------------------
 
 # create the build directory
-mkdir $BUILD_DIR
+mkdir ../$BUILD_DIR
 
 echo "All dependencies ready"
 echo "Now enter the $BUILD_DIR directory"

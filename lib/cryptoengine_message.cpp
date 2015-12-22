@@ -5,7 +5,7 @@
 #include "cryptoengine.h"
 #include "cryptoengine_message.h"
 #include <iostream>
-#include "conversions.h"
+#include "cryptoengine_conversions.h"
 #include <cassert>
 
 #define MIN_MESSAGE_DATA_LEN 9

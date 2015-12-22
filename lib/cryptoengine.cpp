@@ -7,7 +7,7 @@
 #include <sstream>
 
 #include "cryptoengine.h"
-#include "conversions.h"
+#include "cryptoengine_conversions.h"
 #include "openssl/rand.h"
 
 // NaCl
