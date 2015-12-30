@@ -1,3 +1,8 @@
+### WARNING
+
+The library has not bee reviewed by others yet, therefore it should not be used for anything critical !
+The library needs lot of work still !
+
 ### Crypto Engine library for C++ - V 0.0.1
 
 This library simplifies the usage of NaCl for C++
