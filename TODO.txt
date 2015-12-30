@@ -1,2 +1,3 @@
 - Rotate the salt and the hkdf key after the uint64_t max value is reached.
 - Implement ephemeral keys
+- Verify remote peer certificates
