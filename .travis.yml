@@ -11,10 +11,10 @@ compiler:
 before_install:
   - echo $LANG
   - echo $LC_ALL
-  - if [ $TRAVIS_OS_NAME == linux ]; then travis_wait sh setup-travis.sh && sh getdeps.sh; fi
-  - if [ $TRAVIS_OS_NAME == osx ]; then travis_wait sh setup-travis.sh && sh getdeps.sh; fi
+  - if [ $TRAVIS_OS_NAME == linux ]; then travis_wait sh setup-travis.sh && sh deps.sh; fi
+  - if [ $TRAVIS_OS_NAME == osx ]; then travis_wait sh setup-travis.sh && sh deps.sh; fi
 
-script: travis_wait cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && ./tests/CryptoEngineTest && make install
+script: travis_wait cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && ./tests/CryptoEngineTest
 
 branches:
   only:

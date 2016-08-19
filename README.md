@@ -11,7 +11,7 @@ This library simplifies the usage of NaCl for C++
 
 From the cryptoengine-lib folder execute the shell command:
 
-`sh getdeps.sh`
+`sh deps.sh`
 
 This downloads the dependencies and compiles them.
 
