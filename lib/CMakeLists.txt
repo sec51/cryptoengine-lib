@@ -6,7 +6,7 @@ add_library (CryptoEngineLib OBJECT
         cryptoengine_file_utils.h cryptoengine_file_utils.cpp
         cryptoengine_message.cpp cryptoengine_message.h cryptoengine_conversions.cpp cryptoengine_conversions.h
         cryptoengine_encrypted_message.h cryptoengine_encrypted_message.cpp verification_engine.cpp verification_engine.h
-        hex.cpp hex.h)
+        cryptoengine_hex.cpp cryptoengine_hex.h)
 
 
 if(LIBNACL_FOUND)

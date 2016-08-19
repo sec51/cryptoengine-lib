@@ -4,7 +4,7 @@
 
 #include <fstream>
 #include <iomanip>
-#include "hex.h"
+#include "cryptoengine_hex.h"
 
 unsigned char hexval(unsigned char c)
 {

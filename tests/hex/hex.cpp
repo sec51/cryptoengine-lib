@@ -3,7 +3,7 @@
 //
 
 #include "gtest/gtest.h"
-#include "hex.h"
+#include "cryptoengine_hex.h"
 
 namespace {
 

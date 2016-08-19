@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <exception>
 #include <string.h>
-#include "hex.h"
+#include "cryptoengine_hex.h"
 
 class FileUtilsInitializationFailure: public std::exception
 {

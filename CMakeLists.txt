@@ -162,6 +162,7 @@ enable_testing()
 install (TARGETS CryptoEngine DESTINATION lib CONFIGURATIONS ${CMAKE_BUILD_TYPE})
 install (FILES
         ${PROJECT_SOURCE_DIR}/lib/cryptoengine.h
+        ${PROJECT_SOURCE_DIR}/lib/cryptoengine_hex.h
         ${PROJECT_SOURCE_DIR}/lib/cryptoengine_encrypted_message.h
         ${PROJECT_SOURCE_DIR}/lib/cryptoengine_message.h
         ${PROJECT_SOURCE_DIR}/lib/cryptoengine_file_utils.h
