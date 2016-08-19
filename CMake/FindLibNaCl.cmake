@@ -51,6 +51,7 @@ find_package_handle_standard_args(LibNaCl DEFAULT_MSG
         LibNaCl_LIBRARIES
         LibNaCl_LIBRARY
         LibNaCl_INCLUDE_DIR
+        LibNaCl_RANDOM
         )
 
 mark_as_advanced(
@@ -58,4 +59,5 @@ mark_as_advanced(
         LibNaCl_INCLUDE_DIR
         LibNaCl_LIBRARY
         LibNaCl_LIBRARIES
+        LibNaCl_RANDOM
 )

@@ -33,7 +33,7 @@ public:
     VerificationEngine(const std::string &context);
 
     // Instantiate a new Verification Engine object
-    // This passes explicitely the keys
+    // This passes explicitly the keys
     VerificationEngine(const std::string &public_key, const std::string &signing_public_key);
 
 

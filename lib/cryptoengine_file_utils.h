@@ -64,6 +64,8 @@ public:
     // read the key back starting from the key name
     std::string ReadKey(const KeyType key_type);
 
+    void ReadKey(const KeyType key_type, std::string &key);
+
     // Delete a specific key file
     bool DeleteKey(const KeyType key_type);
 

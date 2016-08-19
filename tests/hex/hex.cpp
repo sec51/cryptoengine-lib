@@ -3,25 +3,22 @@
 //
 
 #include "gtest/gtest.h"
-#include <string>
-#include <iostream>
-
-#include "base64.h"
+#include "hex.h"
 
 namespace {
 
-    class Base64Test : public ::testing::Test {
+    class HexTest : public ::testing::Test {
 
 // The fixture for testing class Foo.
     protected:
         // You can remove any or all of the following functions if its body
         // is empty.
 
-        Base64Test() {
+        HexTest() {
             // You can do set-up work for each test here.
         }
 
-        virtual ~Base64Test() {
+        virtual ~HexTest() {
             // You can do clean-up work that doesn't throw exceptions here.
         }
 
@@ -43,43 +40,45 @@ namespace {
 
 
     // Tests that the Foo::Bar() method does Abc.
-    TEST(Base64, Encode) {
+    TEST(Hex, Encode) {
 
         std::cout << "=========================================" << std::endl;
 
         // Encoding
         std::string sentence("the quick brown fox jumps over the lazy dog");
-        Base64 encoder;
-        std::string base64_encoded = encoder.Encode(sentence);
 
-        std::cout << base64_encoded << std::endl;
+        std::string hex_encoded = Hex::Encode(sentence);
 
-        std::string base64_decoded = encoder.Decode(base64_encoded, sentence.size());
+        ASSERT_NE(sentence, hex_encoded);
 
-        std::cout << base64_decoded << std::endl;
+        std::cout << hex_encoded << std::endl;
 
-        ASSERT_EQ(sentence, base64_decoded);
+        std::string hex_decoded = Hex::Decode(hex_encoded);
+
+        std::cout << hex_decoded << std::endl;
+
+        ASSERT_EQ(sentence, hex_decoded);
 
         std::cout << "=========================================" << std::endl;
 
 
     }
     // Tests that the Foo::Bar() method does Abc.
-    TEST(Base64, EncodeLikeKey) {
+    TEST(Hex, EncodeLikeKey) {
         std::cout << "=========================================" << std::endl;
 
         // Encoding
         std::string sentence("this is a test public key");
-        Base64 encoder;
-        std::string base64_encoded = encoder.Encode(sentence);
 
-        std::cout << base64_encoded << std::endl;
+        std::string hex_encoded = Hex::Encode(sentence);
 
-        std::string base64_decoded = encoder.Decode(base64_encoded, sentence.size());
+        std::cout << hex_encoded << std::endl;
 
-        std::cout << base64_decoded << std::endl;
+        std::string hex_decoded = Hex::Decode(hex_encoded);
 
-        ASSERT_EQ(sentence, base64_decoded);
+        std::cout << hex_decoded << std::endl;
+
+        ASSERT_EQ(sentence, hex_decoded);
         std::cout << "=========================================" << std::endl;
 
 

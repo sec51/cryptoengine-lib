@@ -54,7 +54,7 @@ namespace {
     // Tests that the Foo::Bar() method does Abc.
     TEST(FileUtils, WriteKey) {
 
-        std::string key("this is a test public key !!!!!!"); // it needs to be 32 xhar long
+        std::string key("this is a test public key !!!!!!"); // it needs to be 32 chars long
 
         FileUtils utils("test");
 
@@ -71,7 +71,7 @@ namespace {
         ASSERT_TRUE(utils.KeyExists(kPublic));
 
         // read the key file back and compare
-        std::string stored_key = utils.ReadKey( kPublic);
+        std::string stored_key = utils.ReadKey(kPublic);
 
         // check that the key content is the same as we stored it
         ASSERT_EQ(key, stored_key);

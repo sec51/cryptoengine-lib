@@ -40,7 +40,7 @@ VerificationEngine::VerificationEngine(const std::string &context) {
         // try to load the PUBLIC key
         if(file_utils_.KeyExists(kPublic)) {
 
-            public_key_ = file_utils_.ReadKey(kPublic);
+            file_utils_.ReadKey(kPublic, public_key_);
             // check the size of the key which should match the predefined one
             if (public_key_.size() != KEY_SIZE) {
                 std::cout << "The loaded public key is empty or too short." << std::endl;
@@ -57,7 +57,7 @@ VerificationEngine::VerificationEngine(const std::string &context) {
 
             sign_public_key_ = file_utils_.ReadKey(kPublicSign);
             // check the size of the key which should match the predefined one
-            if (public_key_.size() != KEY_SIZE) {
+            if (sign_public_key_.size() != KEY_SIZE) {
                 std::cout << "The loaded signing public key is empty or too short for the context " << context << std::endl;
                 throw g_verification_engine_initialization_failure;
             }

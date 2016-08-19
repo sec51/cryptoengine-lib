@@ -63,7 +63,7 @@ public:
     CryptoEngine(const std::string &context);
 
     // Return the public key
-    inline std::string PublicKey() {
+    inline std::string public_key() {
         return public_key_;
     }
 

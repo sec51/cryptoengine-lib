@@ -92,14 +92,14 @@ namespace {
         // verification engine of sender
         VerificationEngine sender_ver_engine(context);
 
-        ASSERT_EQ(crypto.PublicKey(), sender_ver_engine.public_key());
+        ASSERT_EQ(crypto.public_key(), sender_ver_engine.public_key());
 
         // Init the crypto engine of the recipient to get its public key
         CryptoEngine crypto_recipient(context_recipient);
         // verification engine of recipient
         VerificationEngine recipient_ver_engine(context_recipient);
 
-        ASSERT_EQ(crypto_recipient.PublicKey(), recipient_ver_engine.public_key());
+        ASSERT_EQ(crypto_recipient.public_key(), recipient_ver_engine.public_key());
 
         // Encrypt the message with a randomly generated secret key
         try {
@@ -140,15 +140,15 @@ namespace {
         // Verification engine sender
         VerificationEngine sender_ver_engine(context);
 
-        ASSERT_EQ(crypto.PublicKey(), sender_ver_engine.public_key());
+        ASSERT_EQ(crypto.public_key(), sender_ver_engine.public_key());
 
         // Init the crypto engine of the recipient to get its public key
         CryptoEngine crypto_recipient(context_recipient);
 
         // Recipient Verification engine (setup by passing directly the keys)
-        VerificationEngine recipient_ver_engine(crypto_recipient.PublicKey(), crypto_recipient.SignPublicKey());
+        VerificationEngine recipient_ver_engine(crypto_recipient.public_key(), crypto_recipient.SignPublicKey());
 
-        ASSERT_EQ(crypto_recipient.PublicKey(), recipient_ver_engine.public_key());
+        ASSERT_EQ(crypto_recipient.public_key(), recipient_ver_engine.public_key());
 
         // Encrypt the message with a randomly generated secret key
         try {

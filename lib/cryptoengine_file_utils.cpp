@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <exception>
 #include <string.h>
-#include "base64.h"
+#include "hex.h"
 
 class FileUtilsInitializationFailure: public std::exception
 {
@@ -41,8 +41,12 @@ FileUtils::FileUtils(std::string context) {
 
 // generic method to check whether a file or folder exists
 bool FileUtils::FileFolderExists(const std::string &name) {
-    struct stat buffer;
-    return (stat (name.c_str(), &buffer) == 0);
+    //struct stat buffer;
+    //return (stat (name.c_str(), &buffer) == 0);
+
+        std::ifstream infile(name.c_str());
+        return infile.good();
+
 }
 
 // check if the keys folder exists
@@ -87,7 +91,6 @@ bool FileUtils::WriteKey(const std::string &data, const KeyType key_type) {
     }
 
     // Init the base64 object
-    Base64 base64;
 
     // check whether the key size is correct
     int32_t key_size = KEY_SIZE;
@@ -101,8 +104,8 @@ bool FileUtils::WriteKey(const std::string &data, const KeyType key_type) {
         return false;
     }
 
-    // encode the data_string to base64
-    std::string base64_encoded_data = base64.Encode(data);
+    // encode the data_string to HEX
+    std::string base64_encoded_data = Hex::Encode(data);
 
     // Build the string full path
     std::string key_file_full_path = BuildKeyName(key_type);
@@ -137,6 +140,42 @@ bool FileUtils::WriteKey(const std::string &data, const KeyType key_type) {
 
 };
 
+void FileUtils::ReadKey(const KeyType key_type, std::string &key) {
+
+    std::string line("");
+    std::ifstream key_file(BuildKeyName(key_type));
+
+    if (key_file.is_open())
+    {
+        // read 1 single line of the file
+        // the key is 1 line long
+        std::getline(key_file, line);
+
+        // decode the content of the line
+        // std::string key;
+        switch (key_type) {
+            case kPrivateSign:
+                key = Hex::Decode(line);
+                break;
+            default:
+                key = Hex::Decode(line);
+        }
+
+        // close the file, we do not need to read from it anymore
+        key_file.close();
+
+        // return the decoded content
+        //return key;
+    }
+    else {
+        std::cout << "Unable to open key file " << BuildKeyName(key_type) << std::endl;
+    }
+
+    //std::cout << "Should not have gotten here *****************";
+    // return basically an empty string
+    // return line;
+}
+
 // read the key back
 std::string FileUtils::ReadKey(const KeyType key_type) {
 
@@ -145,21 +184,18 @@ std::string FileUtils::ReadKey(const KeyType key_type) {
 
     if (key_file.is_open())
     {
-        // read 1 songle line of the file
+        // read 1 single line of the file
         // the key is 1 line long
         std::getline(key_file, line);
-
-        // init the base64 encoder
-        Base64 encoder;
 
         // decode the content of the line
         std::string key;
         switch (key_type) {
             case kPrivateSign:
-                key = encoder.Decode(line, SIGNING_KEY_SIZE);
+                key = Hex::Decode(line);
                 break;
             default:
-                key = encoder.Decode(line, KEY_SIZE);
+                key = Hex::Decode(line);
         }
 
         // close the file, we do not need to read from it anymore
